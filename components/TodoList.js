@@ -37,9 +37,9 @@ export default function Todos({ user }) {
   }
 
   return (
-    <div className="w-full">
-      <h1 className="mb-12">Todo List.</h1>
-      <div className="flex gap-2 my-2">
+    <div className="w-full max-w-md">
+      <h1 className="mb-12" >Seven emotions</h1>
+      <div className="flex flex-col gap-2 my-2">
         <input
           className="rounded w-full p-2"
           type="text"

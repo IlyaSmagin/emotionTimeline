@@ -1,5 +1,5 @@
 {
-  "name": "supabase-nextjs-todo-list",
+  "name": "emotion-timeline",
   "version": "1.0.0",
   "scripts": {
     "dev": "next",
@@ -10,14 +10,30 @@
   "dependencies": {
     "@supabase/supabase-js": "^1.28.0",
     "@supabase/ui": "^0.36.0",
-    "next": "^12.0.9",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "next": "^12.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.17",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-preset-env": "^6.7.0",
-    "tailwindcss": "^1.7.4"
+    "tailwindcss": "^3.1.8"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "description": "- Frontend:\r   - [Next.js](https://github.com/vercel/next.js) - a React framework for production.\r   - [Tailwind](https://tailwindcss.com/) for styling and layout.\r   - [Supabase.js](https://supabase.com/docs/library/getting-started) for user management and realtime data syncing.\r - Backend:\r   - [app.supabase.com](https://app.supabase.com/): hosted Postgres database with restful API for usage with Supabase.js.",
+  "main": "postcss.config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IlyaSmagin/emotionTimeline.git"
+  },
+  "author": "lalacode",
+  "bugs": {
+    "url": "https://github.com/IlyaSmagin/emotionTimeline/issues"
+  },
+  "homepage": "https://github.com/IlyaSmagin/emotionTimeline#readme"
 }
