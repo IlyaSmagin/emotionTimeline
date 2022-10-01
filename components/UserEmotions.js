@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/initSupabase'
+import { generateJSXMeshGradient } from "meshgrad"
 
 export default function Todos({ user }) {
   const [todos, setTodos] = useState([])
@@ -38,20 +39,25 @@ export default function Todos({ user }) {
   }
 
   return (
-    <div className="w-full max-w-md flex flex-col">
+    <>
+      
+      <div style={generateJSXMeshGradient(4)} className="absolute z-10 w-screen h-screen" />
+    <div className="w-full z-20 max-w-md flex flex-col">
+      
       <h1 className="mb-12" >Seven emotions</h1>
-      <div className="flex flex-row gap-2 my-2">
+      <div className="w-full flex flex-row gap-2 my-2">
         <input
           className="rounded w-full p-2"
           type="text"
           placeholder="make coffee"
           value={username}
           onChange={(e) => {
-            setError('')
-            setUsername(e.target.value);
+            setError('');
+            setUsername(e.target.value.toLowerCase());
+            fetchTodos(username);
           }}
         />
-        <button className="btn-black" onClick={() => fetchTodos(username)}>
+        <button className="btn-black min-w-fit" onClick={() => fetchTodos(username)}>
           Find user
         </button>
       </div>
@@ -63,7 +69,8 @@ export default function Todos({ user }) {
           ))}
         </ul>
       </div>
-    </div>
+      </div>
+      </>
   )
 }
 

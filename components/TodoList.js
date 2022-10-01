@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/initSupabase'
+import { generateJSXMeshGradient } from "meshgrad"
 
 export default function Todos({ user }) {
   const [todos, setTodos] = useState([])
@@ -29,27 +30,25 @@ export default function Todos({ user }) {
     }
   }
 
-  const deleteTodo = async (id) => {
-    try {
-      await supabase.from('todos').delete().eq('id', id)
-      setTodos(todos.filter((x) => x.id != id))
-    } catch (error) {
-      console.log('error', error)
-    }
-  }
 
-  return (<><div className='absolute mt-4 mr-48' > <input
-          className="rounded w-full p-2"
+  return (
+    <>
+        <input
+          className="absolute z-20 top-4 left-4 rounded w-48 p-2"
           type="text"
           placeholder="lalacode"
           value={username}
           required
           onChange={(e) => {
             setError('')
-            setUsername(e.target.value)
+            setUsername(e.target.value.toLowerCase())
           }}
-        /></div>
-    <div className="w-full max-w-md flex flex-col">
+        />
+    
+      <div style={generateJSXMeshGradient(4)} className="absolute z-0 w-screen h-screen" />
+    
+      
+      <div className="w-full relative z-10 max-w-md flex flex-col">
       
       <h1 className="mb-12" >Seven emotions</h1>
       <div className="flex flex-row gap-2 my-2">
@@ -71,7 +70,7 @@ export default function Todos({ user }) {
       <div className="bg-white shadow overflow-hidden rounded-md">
         <ul>
           {todos.map((todo) => (
-            <Todo key={todo.id} todo={todo} onDelete={() => deleteTodo(todo.id)} />
+            <Todo key={todo.id} todo={todo}  />
           ))}
         </ul>
       </div>
@@ -79,24 +78,7 @@ export default function Todos({ user }) {
   )
 }
 
-const Todo = ({ todo, onDelete }) => {
-  const [isCompleted, setIsCompleted] = useState(todo.is_complete)
-
-  const toggle = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('todos')
-        .update({ is_complete: !isCompleted })
-        .eq('id', todo.id)
-        .single()
-      if (error) {
-        throw new Error(error)
-      }
-      setIsCompleted(data.is_complete)
-    } catch (error) {
-      console.log('error', error)
-    }
-  }
+const Todo = ({ todo }) => {
 
   return (
     <li
@@ -111,29 +93,8 @@ const Todo = ({ todo, onDelete }) => {
           <div className="text-sm leading-5 font-medium truncate">{todo.task}</div>
         </div>
         <div>
-          <input
-            className="cursor-pointer"
-            onChange={(e) => toggle()}
-            type="checkbox"
-            checked={isCompleted ? true : ''}
-          />
         </div>
-        <button
-          onClick={(e) => {
-            e.preventDefault()
-            e.stopPropagation()
-            onDelete()
-          }}
-          className="w-4 h-4 ml-2 border-2 hover:border-black rounded"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="gray">
-            <path
-              fillRule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
+        
       </div>
     </li>
   )
