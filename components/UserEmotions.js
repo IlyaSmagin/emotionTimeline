@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/initSupabase'
-import { generateJSXMeshGradient } from "meshgrad"
 
 export default function Todos({ user }) {
   const [todos, setTodos] = useState([])
-  const [newTaskText, setNewTaskText] = useState('')
   const [username, setUsername] = useState("")
   const [errorText, setError] = useState('')
 
@@ -17,31 +15,11 @@ export default function Todos({ user }) {
     if (error) console.log('error', error)
     else setTodos(todos)
   }
-  const addTodo = async (taskText) => {
-    let task = taskText.trim()
-    if (task.length) {
-      let { data: todo, error } = await supabase
-        .from('todos')
-        .insert({ task, user_id: user.id })
-        .single()
-      if (error) setError(error.message)
-      else setTodos([...todos, todo])
-    }
-  }
 
-  const deleteTodo = async (id) => {
-    try {
-      await supabase.from('todos').delete().eq('id', id)
-      setTodos(todos.filter((x) => x.id != id))
-    } catch (error) {
-      console.log('error', error)
-    }
-  }
 
   return (
     <>
       
-      <div style={generateJSXMeshGradient(4)} className="absolute z-10 w-screen h-screen" />
     <div className="w-full z-20 max-w-md flex flex-col">
       
       <h1 className="mb-12" >Seven emotions</h1>
@@ -54,7 +32,7 @@ export default function Todos({ user }) {
           onChange={(e) => {
             setError('');
             setUsername(e.target.value.toLowerCase());
-            fetchTodos(username);
+            fetchTodos(e.target.value.toLowerCase());
           }}
         />
         <button className="btn-black min-w-fit" onClick={() => fetchTodos(username)}>
@@ -65,7 +43,7 @@ export default function Todos({ user }) {
       <div className="bg-white shadow overflow-hidden rounded-md">
         <ul>
           {todos.map((todo) => (
-            <Todo key={todo.id} todo={todo} onDelete={() => deleteTodo(todo.id)} />
+            <Todo key={todo.id} todo={todo}  />
           ))}
         </ul>
       </div>
@@ -74,24 +52,7 @@ export default function Todos({ user }) {
   )
 }
 
-const Todo = ({ todo, onDelete }) => {
-  const [isCompleted, setIsCompleted] = useState(todo.is_complete)
-
-  const toggle = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('todos')
-        .update({ is_complete: !isCompleted })
-        .eq('id', todo.id)
-        .single()
-      if (error) {
-        throw new Error(error)
-      }
-      setIsCompleted(data.is_complete)
-    } catch (error) {
-      console.log('error', error)
-    }
-  }
+const Todo = ({ todo }) => {
 
   return (
     <li
@@ -106,29 +67,7 @@ const Todo = ({ todo, onDelete }) => {
           <div className="text-sm leading-5 font-medium truncate">{todo.task}</div>
         </div>
         <div>
-          <input
-            className="cursor-pointer"
-            onChange={(e) => toggle()}
-            type="checkbox"
-            checked={isCompleted ? true : ''}
-          />
         </div>
-        <button
-          onClick={(e) => {
-            e.preventDefault()
-            e.stopPropagation()
-            onDelete()
-          }}
-          className="w-4 h-4 ml-2 border-2 hover:border-black rounded"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="gray">
-            <path
-              fillRule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
       </div>
     </li>
   )

@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/initSupabase'
-import { generateJSXMeshGradient } from "meshgrad"
 
-export default function Todos({ user }) {
+export default function Todos({ user, settingsName = "" }) {
   const [todos, setTodos] = useState([])
   const [newTaskText, setNewTaskText] = useState('')
-  const [username, setUsername] = useState("")
+  const [username, setUsername] = useState(settingsName)
   const [errorText, setError] = useState('')
 
   useEffect(() => {
@@ -18,15 +17,18 @@ export default function Todos({ user }) {
     if (error) console.log('error', error)
     else setTodos(todos)
   }
-  const addTodo = async (taskText) => {
+  const addTodo = async (taskText, username) => {
     let task = taskText.trim()
-    if (task.length) {
+    if (task.length && username.length) {
       let { data: todo, error } = await supabase
         .from('todos')
         .insert({ task, user_id: user.id, username })
         .single()
       if (error) setError(error.message)
       else setTodos([...todos, todo])
+    }
+    else {
+      !task.length ? alert(task.length) : alert("Add username");
     }
   }
 
@@ -45,13 +47,11 @@ export default function Todos({ user }) {
           }}
         />
     
-      <div style={generateJSXMeshGradient(4)} className="absolute z-0 w-screen h-screen" />
-    
       
       <div className="w-full relative z-10 max-w-md flex flex-col">
       
       <h1 className="mb-12" >Seven emotions</h1>
-      <div className="flex flex-row gap-2 my-2">
+      <div className="flex flex-row flex-nowrap gap-2 my-2">
         <input
           className="rounded w-full p-2"
           type="text"
@@ -62,7 +62,7 @@ export default function Todos({ user }) {
             setNewTaskText(e.target.value)
           }}
         />
-        <button className="btn-black" onClick={() => addTodo(newTaskText)}>
+        <button className="btn-black" onClick={() => addTodo(newTaskText, username)}>
           Add
         </button>
       </div>
