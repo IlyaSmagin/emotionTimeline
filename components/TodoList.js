@@ -43,7 +43,7 @@ export default function Todos({ user }) {
           type="text"
           placeholder="lalacode"
           value={username}
-          required="true"
+          required
           onChange={(e) => {
             setError('')
             setUsername(e.target.value)

@@ -11,7 +11,7 @@ export default function Todos({ user }) {
     fetchTodos()
   }, [])
 
-  const fetchTodos = async () => {
+  const fetchTodos = async (username) => {
     let { data: todos, error } = await supabase.from('todos').select('*').eq('username', username).order('id', true)
     if (error) console.log('error', error)
     else setTodos(todos)
@@ -45,14 +45,14 @@ export default function Todos({ user }) {
           className="rounded w-full p-2"
           type="text"
           placeholder="make coffee"
-          value={newTaskText}
+          value={username}
           onChange={(e) => {
             setError('')
-            setNewTaskText(e.target.value)
+            setUsername(e.target.value);
           }}
         />
-        <button className="btn-black" onClick={() => addTodo(newTaskText)}>
-          Add
+        <button className="btn-black" onClick={() => fetchTodos(username)}>
+          Find user
         </button>
       </div>
       {!!errorText && <Alert text={errorText} />}
