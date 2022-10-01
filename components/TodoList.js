@@ -4,6 +4,7 @@ import { supabase } from '../lib/initSupabase'
 export default function Todos({ user }) {
   const [todos, setTodos] = useState([])
   const [newTaskText, setNewTaskText] = useState('')
+  const [username, setUsername] = useState("")
   const [errorText, setError] = useState('')
 
   useEffect(() => {
@@ -11,7 +12,8 @@ export default function Todos({ user }) {
   }, [])
 
   const fetchTodos = async () => {
-    let { data: todos, error } = await supabase.from('todos').select('*').order('id', true)
+    let { data: todos, error } = await supabase.from('todos').select('*')
+  .eq('user_id', user.id).order('id', true)
     if (error) console.log('error', error)
     else setTodos(todos)
   }
@@ -20,7 +22,7 @@ export default function Todos({ user }) {
     if (task.length) {
       let { data: todo, error } = await supabase
         .from('todos')
-        .insert({ task, user_id: user.id })
+        .insert({ task, user_id: user.id, username })
         .single()
       if (error) setError(error.message)
       else setTodos([...todos, todo])
@@ -36,8 +38,19 @@ export default function Todos({ user }) {
     }
   }
 
-  return (
-    <div className="w-full max-w-md">
+  return (<><div className='absolute mt-4 mr-48' > <input
+          className="rounded w-full p-2"
+          type="text"
+          placeholder="lalacode"
+          value={username}
+          required="true"
+          onChange={(e) => {
+            setError('')
+            setUsername(e.target.value)
+          }}
+        /></div>
+    <div className="w-full max-w-md flex flex-col">
+      
       <h1 className="mb-12" >Seven emotions</h1>
       <div className="flex flex-row gap-2 my-2">
         <input
@@ -62,7 +75,7 @@ export default function Todos({ user }) {
           ))}
         </ul>
       </div>
-    </div>
+    </div></>
   )
 }
 
