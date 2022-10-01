@@ -18,18 +18,18 @@ export default function IndexPage() {
           </div>
         </div>
       ) : (
-          <><button
+          <>
+            <button
             className=" absolute top-4 right-4 btn-black w-24"
             onClick={async () => {
               const { error } = await supabase.auth.signOut();
               if (error) console.log("Error logging out:", error.message);
             }}
-          >
-            Logout
-          </button>
+          >Logout</button>
         <div className="max-w-lg w-full h-full flex flex-col justify-center items-center p-4">
           <TodoList user={supabase.auth.user()} />
-        </div></>
+            </div>
+          </>
       )}
     </div>
   );
