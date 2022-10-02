@@ -110,7 +110,7 @@ export default function Todos({ user, settingsName }) {
                 height={40}
                 onClick={() => {
                   setCurEmotion(index);
-                    setCurLevel(0);
+                  setCurLevel(0);
                   if (emotions[index] > 4) {
                     setCurLevel(1);
                   }

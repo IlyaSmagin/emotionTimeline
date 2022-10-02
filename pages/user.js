@@ -18,6 +18,7 @@ export default function IndexPage() {
   const { user } = Auth.useUser();
   const gradient = new MeshGradient();
   const canvasId = "my-canvas";
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   useEffect(() => {
     gradient.initGradient("#" + canvasId, COLORS);
