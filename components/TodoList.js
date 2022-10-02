@@ -55,7 +55,7 @@ export default function Todos({ user, settingsName }) {
         <h1 className="absolute top-4 left-4 z-20">{username}</h1>
         <div className="flex flex-col flex-nowrap justify-center items-center gap-2 my-2">
           <Image
-            src={"/../public/emotion" + (1 + curEmotion) + ".png"}
+            src={"/../img/emotion" + (1 + curEmotion) + ".png"}
             onClick={() => addTodo(emotions, curEmotion, username)}
             className="relative w-1/2 h-1/2 rounded-full active:scale-90 mx-auto"
             width={150}
@@ -67,7 +67,7 @@ export default function Todos({ user, settingsName }) {
           <ul className="flex flex-row flex-nowrap justify-between">
             {emotionsList.map((emo, index) => (
               <Image
-                src={"/../public/emotion" + (1 + index) + ".png"}
+                src={"/../img/emotion" + (1 + index) + ".png"}
                 className="relative w-12 h-12 rounded-full active:scale-90"
                 width={40}
                 height={40}
