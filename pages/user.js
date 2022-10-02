@@ -97,7 +97,7 @@ export default function IndexPage() {
                   <input
                     className="mx-3 my-2 w-1/2 px-2 placeholder:text-black text-right"
                     type="text"
-                    placeholder={username || "введите ник"}
+                    placeholder={"lalacode"}
                     value={username}
                     required
                     onChange={(e) => {
