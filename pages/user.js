@@ -1,6 +1,6 @@
 import { supabase } from "../lib/initSupabase";
 import { Auth } from "@supabase/ui";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import TodoList from "../components/UserEmotions";
 import MeshGradient from "mesh-gradient.js";
 
