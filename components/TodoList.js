@@ -51,23 +51,23 @@ export default function Todos({ user, settingsName }) {
 
   return (
     <>
-      <div className="w-full relative z-10 max-w-md flex flex-col">
-        <h1 className="absolute top-4 left-4 z-20">{username}</h1>
-        <div className="flex flex-col flex-nowrap justify-center items-center gap-2 my-2">
+      <div className="w-full z-10 max-w-md flex flex-col justify-center items-center p-20 centering">
+        <h1 className="text-4xl sm:text-6xl absolute top-4 left-4 z-20">{username}</h1>
+        <div className="grid grid-cols-1 aspect-square justify-center mx-auto my-2">
           <Image
-            src={"/../img/emotion" + (1 + curEmotion) + ".png"}
+            src={"/../public/emotion" + (1 + curEmotion) + ".png"}
             onClick={() => addTodo(emotions, curEmotion, username)}
-            className="relative w-1/2 h-1/2 rounded-full active:scale-90 mx-auto"
+            className="styledIMAGE relative w-1/2 h-1/2 rounded-full active:scale-90 mx-auto"
             width={150}
             height={150}
           />
         </div>
         {!!errorText && <Alert text={errorText} />}
         <div className="overflow-hidden">
-          <ul className="flex flex-row flex-nowrap justify-between">
+          <ul className="flex flex-row flex-nowrap justify-between mt-4">
             {emotionsList.map((emo, index) => (
               <Image
-                src={"/../img/emotion" + (1 + index) + ".png"}
+                src={"/../public/emotion" + (1 + index) + ".png"}
                 className="relative w-12 h-12 rounded-full active:scale-90"
                 width={40}
                 height={40}

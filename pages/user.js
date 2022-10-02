@@ -5,13 +5,13 @@ import TodoList from "../components/UserEmotions";
 import MeshGradient from "mesh-gradient.js";
 
 const COLORS = [
-  "#ef4444",
-  "#f97316",
-  "#facc15",
-  "#10b981",
-  "#06b6d4",
-  "#3b82f6",
-  "#8b5cf6",
+  "#FECACA",
+  "#FED7AA",
+  "#FEF9C3",
+  "#A7F3D0",
+  "#A5F3FC",
+  "#BFDBFE",
+  "#DDD6FE",
 ];
 
 export default function IndexPage() {
