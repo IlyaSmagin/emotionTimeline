@@ -72,8 +72,8 @@ export default function Todos({ user }) {
                 className="bg-white rounded-2xl shadow-2xl p-4 flex flex-row justify-start mb-2 sm:mb-4"
                 key={index}
               >
-                <Image
-                  src={"/../public/emotion" + (1 + index) + ".png"}
+                <img
+                  src={"./img/emotion" + (1 + index) + ".png"}
                   className="relative w-12 h-12 rounded-full active:scale-90 aspect-square"
                   width={44}
                   height={36}
