@@ -45,3 +45,10 @@ body,
   justify-items: center;
   align-items: center;
 }
+
+.border-gradient {
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #ff2626, #deea0b, #02af7b) 0% 1% 100%
+    1%;
+}

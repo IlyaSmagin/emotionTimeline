@@ -143,7 +143,7 @@ export default function IndexPage() {
             <TodoList user={supabase.auth.user()} />
           </div>
           <a
-            href="/"
+            href={ !isSettingsOpen ? "/" : ""}
             className="z-20 absolute bottom-4 w-16 sm:w-20 h-16 sm:h-20 border border-gray-400 bg-white/70 rounded-3xl flex justify-center items-center p-4"
           >
             <svg
