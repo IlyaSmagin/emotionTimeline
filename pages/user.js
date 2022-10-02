@@ -98,7 +98,7 @@ export default function IndexPage() {
                     className="mx-3 my-2 w-1/2 px-2 placeholder:text-black text-right"
                     type="text"
                     placeholder={"lalacode"}
-                    value={username}
+                    value={"lalacode"}
                     required
                     onChange={(e) => {
                       setError("");
