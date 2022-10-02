@@ -10,13 +10,13 @@ export default function Todos({ user, settingsName }) {
   const [curEmotion, setCurEmotion] = useState(0);
 
   const emotionsList = [
-    "angry",
-    "happy",
-    "sad",
-    "bored",
-    "exited",
-    "confused",
-    "surprised",
+    "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/angry-face_1f620.png",
+    "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/hushed-face_1f62f.png",
+    "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/slightly-smiling-face_1f642.png",
+    "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/anguished-face_1f627.png",
+    "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/neutral-face_1f610.png",
+    "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/slightly-frowning-face_1f641.png",
+    "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/face-with-spiral-eyes_1f635-200d-1f4ab.png",
   ];
 
   useEffect(() => {
@@ -66,8 +66,8 @@ export default function Todos({ user, settingsName }) {
         <div className="overflow-hidden">
           <ul className="flex flex-row flex-nowrap justify-between mt-4">
             {emotionsList.map((emo, index) => (
-              <Image
-                src={"/../public/emotion" + (1 + index) + ".png"}
+              <img
+                src={emo}
                 className="relative w-12 h-12 rounded-full active:scale-90"
                 width={40}
                 height={40}
