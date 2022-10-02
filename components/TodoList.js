@@ -87,7 +87,7 @@ export default function Todos({ user, settingsName }) {
   return (
     <>
       <div className="w-full z-10 max-w-md flex flex-col justify-center items-center p-20 centering">
-        <h1 className="text-4xl sm:text-6xl absolute top-4 left-4 z-20 border-b-4 border-teal-500">
+        <h1 className="text-4xl sm:text-6xl absolute top-4 left-4 z-20 border-b-4 border-teal-500 ">
           {username}
         </h1>
         <div className="grid grid-cols-1 aspect-square justify-center mx-auto my-2">
@@ -110,7 +110,13 @@ export default function Todos({ user, settingsName }) {
                 height={40}
                 onClick={() => {
                   setCurEmotion(index);
-                  setCurLevel(0);
+                    setCurLevel(0);
+                  if (emotions[index] > 4) {
+                    setCurLevel(1);
+                  }
+                  if (emotions[index] > 8) {
+                    setCurLevel(1);
+                  }
                 }}
                 key={emo + index}
               />
