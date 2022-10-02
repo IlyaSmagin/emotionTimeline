@@ -2,10 +2,14 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../lib/initSupabase'
 
 export default function Todos({ user, settingsName = "" }) {
-  const [todos, setTodos] = useState([])
-  const [newTaskText, setNewTaskText] = useState('')
+  const [emotions, setEmotions] = useState([0,0,0,0,0,0,0])
   const [username, setUsername] = useState(settingsName)
   const [errorText, setError] = useState('')
+  const [curEmotion, setCurEmotion] = useState(0);
+
+  const emotionsList = [
+    "angry", "happy", "sad", "bored", "exited", "confused", "surprised"
+  ];
 
   useEffect(() => {
     fetchTodos()
@@ -15,20 +19,22 @@ export default function Todos({ user, settingsName = "" }) {
     let { data: todos, error } = await supabase.from('todos').select('*')
   .eq('user_id', user.id).order('id', true)
     if (error) console.log('error', error)
-    else setTodos(todos)
   }
-  const addTodo = async (taskText, username) => {
-    let task = taskText.trim()
-    if (task.length && username.length) {
-      let { data: todo, error } = await supabase
+  const addTodo = async ( emotions,curEmotion,username) => {
+    //let emotionsArr = emotions;
+    //emotionsArr[curEmotion]++;
+    setEmotions(emotions[curEmotion]+1);
+    console.log(emotions, curEmotion,emotions[curEmotion]);////swhaaaaa object object
+    if (username.length) {
+      let { data: emotion, error } = await supabase
         .from('todos')
-        .insert({ task, user_id: user.id, username })
+        .insert({ emotion: emotions, user_id: user.id, username })
         .single()
       if (error) setError(error.message)
-      else setTodos([...todos, todo])
+      else setEmotions(emotions)
     }
     else {
-      !task.length ? alert(task.length) : alert("Add username");
+      alert("Add username");
     }
   }
 
@@ -52,26 +58,16 @@ export default function Todos({ user, settingsName = "" }) {
       
       <h1 className="mb-12" >Seven emotions</h1>
       <div className="flex flex-row flex-nowrap gap-2 my-2">
-        <input
-          className="rounded w-full p-2"
-          type="text"
-          placeholder="make coffee"
-          value={newTaskText}
-          onChange={(e) => {
-            setError('')
-            setNewTaskText(e.target.value)
-          }}
-        />
-        <button className="btn-black" onClick={() => addTodo(newTaskText, username)}>
+        <button className="btn-black" onClick={() => addTodo(emotions, curEmotion, username)}>
           Add
         </button>
       </div>
       {!!errorText && <Alert text={errorText} />}
-      <div className="bg-white shadow overflow-hidden rounded-md">
-        <ul>
-          {todos.map((todo) => (
-            <Todo key={todo.id} todo={todo}  />
-          ))}
+      <div className="shadow overflow-hidden rounded-md">
+          <ul className='flex flex-row flex-nowrap justify-between'>
+            {emotionsList.map((emo, index) => (
+              <div className="rounded-full " onClick={() => setCurEmotion(index)} key={emo+index} >{emo}</div>
+            ))}
         </ul>
       </div>
     </div></>
@@ -81,13 +77,7 @@ export default function Todos({ user, settingsName = "" }) {
 const Todo = ({ todo }) => {
 
   return (
-    <li
-      onClick={(e) => {
-        e.preventDefault()
-        toggle()
-      }}
-      className="w-full block cursor-pointer hover:bg-gray-200 focus:outline-none focus:bg-gray-200 transition duration-150 ease-in-out"
-    >
+    <li className="w-full block cursor-pointer hover:bg-gray-200 focus:outline-none focus:bg-gray-200 transition duration-150 ease-in-out" >
       <div className="flex items-center px-4 py-4 sm:px-6">
         <div className="min-w-0 flex-1 flex items-center">
           <div className="text-sm leading-5 font-medium truncate">{todo.task}</div>
