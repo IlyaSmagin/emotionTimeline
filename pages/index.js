@@ -3,7 +3,6 @@ import { supabase } from "../lib/initSupabase";
 import { Auth } from "@supabase/ui";
 import { useEffect } from 'react';
 import MeshGradient from 'mesh-gradient.js';
-import { generateJSXMeshGradient } from "meshgrad"
 
 export default function IndexPage() {
   const { user } = Auth.useUser();
@@ -51,6 +50,12 @@ const COLORS = [
         <div className="max-w-lg w-full h-full flex flex-col justify-center items-center p-4">
           <TodoList user={supabase.auth.user()} />
             </div>
+            <a src="/user" className="z-20 absolute bottom-4 w-24 h-24 border border-gray-400 bg-gray-200/30 rounded-2xl grid grid-cols-2 grid-rows-2 gap-2 justify-center items-center">
+              <div className="w-8 h-8 bg-gray-200 rounded-xl">1</div>
+              <div className="w-8 h-8 bg-gray-200 rounded-xl">2</div>
+              <div className="w-8 h-8 bg-gray-200 rounded-xl">3</div>
+              <div className="w-8 h-8 bg-gray-200 rounded-xl">4</div>
+          </a>
           </>
       )}
     </div>
