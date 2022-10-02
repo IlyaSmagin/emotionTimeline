@@ -20,15 +20,16 @@ export default function Todos({ user, settingsName = "" }) {
   .eq('user_id', user.id).order('id', true)
     if (error) console.log('error', error)
   }
-  const addTodo = async ( emotions,curEmotion,username) => {
-    //let emotionsArr = emotions;
+  const addTodo = ( emotions,curEmotion,username) => {
+    let emotionsArr = emotions;
+    emotionsArr[curEmotion]++;
     //emotionsArr[curEmotion]++;
     setEmotions(emotions[curEmotion]+1);
-    console.log(emotions, curEmotion,emotions[curEmotion]);////swhaaaaa object object
+    console.log(emotions,emotionsArr, curEmotion,emotions[curEmotion]+1);////swhaaaaa object object
     if (username.length) {
-      let { data: emotion, error } = await supabase
+      let { data: emotionsArr, error } = supabase
         .from('todos')
-        .insert({ emotion: emotions, user_id: user.id, username })
+        .insert({ emotion: emotionsArr, user_id: user.id, username })
         .single()
       if (error) setError(error.message)
       else setEmotions(emotions)
