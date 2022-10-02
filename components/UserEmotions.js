@@ -8,25 +8,33 @@ export default function Todos({ user }) {
   const [errorText, setError] = useState("");
 
   const friends = [
-    { name: "Рома Винегрет", style: "from-red-900 via-purple-800 to-pink-700" },
+    {
+      name: "Рома Винегрет",
+      style: "from-red-900 via-purple-800 to-pink-700",
+      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.24.jpeg?raw=true",
+    },
     {
       name: "Константин Владимиро-Кабаевский",
       style: "from-red-500 via-blue-500 to-green-700",
+      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.30.jpeg?raw=true",
     },
     {
       name: "Маргарита Астафьева",
       style: "from-orange-500 via-yellow-300 to-cyan-700",
+      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.41.jpeg?raw=true",
     },
     {
       name: "Пантелей Владимиров",
       style: "from-purple-400 via-cyan-400 to-blue-300",
+      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.43.jpeg?raw=true",
     },
     {
       name: "Костя Череп Сосиска",
       style: "from-green-700 via-red-400 to-yellow-300",
+      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.54.jpeg?raw=true",
     },
   ];
-  
+
   useEffect(() => {
     fetchTodos();
   }, []);
@@ -44,7 +52,9 @@ export default function Todos({ user }) {
   return (
     <>
       <div className="w-full z-20 max-w-md flex flex-col">
-        <h1 className="text-4xl sm:text-6xl absolute top-4 left-4 z-20">Друзья</h1>
+        <h1 className="text-4xl sm:text-6xl absolute top-4 left-4 z-20">
+          Друзья
+        </h1>
         <div className="w-full gap-2 my-2 hidden">
           <input
             className="rounded w-full p-2 hidden"
@@ -69,11 +79,11 @@ export default function Todos({ user }) {
           <ul>
             {friends.map((fri, index) => (
               <li
-                className="bg-white rounded-2xl shadow-2xl p-4 flex flex-row justify-start mb-2 sm:mb-4"
+                className="bg-white rounded-2xl shadow-2xl p-4 flex flex-row justify-start mb-2 sm:mb-3"
                 key={index}
               >
                 <img
-                  src={"./img/emotion" + (1 + index) + ".png"}
+                  src={fri.img}
                   className="relative w-12 h-12 rounded-full active:scale-90 aspect-square"
                   width={44}
                   height={36}
@@ -82,7 +92,11 @@ export default function Todos({ user }) {
                 />
                 <div className="flex flex-col w-full ml-2">
                   {fri.name}
-                  <div className={"mt-2 rounded w-full h-2 bg-gradient-to-r "+ fri.style}></div>
+                  <div
+                    className={
+                      "mt-2 rounded w-full h-2 bg-gradient-to-r " + fri.style
+                    }
+                  ></div>
                 </div>
               </li>
             ))}

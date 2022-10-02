@@ -82,21 +82,26 @@ export default function IndexPage() {
               </svg>
             </button>
           ) : (
-            <div className="absolute top-20 w-max-md rounded-2xl w-3/4 h-2/3 bg-white z-30">
+            <div className="absolute top-20 w-max-md rounded-2xl w-3/4 h-fit bg-white z-30">
               <ul className="r">
-                <li
-                  className="m-4 w-48 p-2 "
-                  onClick={async () => {
-                    const { error } = await supabase.auth.signOut();
-                    if (error) console.log("Error logging out:", error.message);
-                  }}
-                >
-                  Выйти из аккаунта
+                <li className="mx-3 my-2 flex flex-row justify-between flex-nowrap">
+                  <span className="w-48 p-2 ">аватар</span>
+                  <img
+                    className="w-16 h-16 rounded-2xl"
+                    src="https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.41.jpeg?raw=true"
+                  />
                 </li>
                 <li className="flex flex-row justify-between flex-nowrap">
-                  <span className="m-4 w-48 p-2 ">никнейм</span>
+                  <span className="mx-3 my-2 w-48 px-2 ">имя</span>
+                  <span className="mx-3 my-2 w-48 px-2 text-right">
+                    Владимиран
+                  </span>
+                </li>
+
+                <li className="flex flex-row justify-between flex-nowrap">
+                  <span className="mx-3 my-2 w-48 px-2 ">никнейм</span>
                   <input
-                    className="m-4 w-48 p-2 placeholder:text-black"
+                    className="mx-3 my-2 w-1/2 px-2 placeholder:text-black text-right"
                     type="text"
                     placeholder={username || "введите ник"}
                     value={username}
@@ -106,6 +111,36 @@ export default function IndexPage() {
                       setUsername(e.target.value.toLowerCase());
                     }}
                   />
+                </li>
+                <li className="flex flex-row justify-between flex-nowrap">
+                  <span className="mx-3 my-2 w-48 px-2 ">дата рождения</span>
+                  <span className="mx-3 my-2 w-48 px-2 text-right">
+                    11.05.2000
+                  </span>
+                </li>
+                <li className="flex flex-row justify-between flex-nowrap">
+                  <span className="mx-3 my-2 w-48 px-2 ">друзей</span>
+                  <span className="mx-3 my-2 w-48 px-2 text-right">5</span>
+                </li>
+                <li className="flex flex-row justify-between flex-nowrap">
+                  <span className="mx-3 my-2 w-48 px-2 ">
+                    пригласить друзей
+                  </span>
+                </li>
+                <li className="flex flex-row justify-between flex-nowrap">
+                  <span className="mx-3 my-2 w-48 px-2 ">черный список</span>
+                </li>
+                <li className="flex flex-row justify-between flex-nowrap">
+                  <span className="mx-3 my-2 w-48 px-2 ">уведомления</span>
+                </li>
+                <li
+                  className="mx-3 my-2 w-48 px-2 text-gray-600"
+                  onClick={async () => {
+                    const { error } = await supabase.auth.signOut();
+                    if (error) console.log("Error logging out:", error.message);
+                  }}
+                >
+                  Выйти из аккаунта
                 </li>
               </ul>
             </div>

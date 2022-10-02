@@ -54,8 +54,8 @@ export default function Todos({ user, settingsName }) {
       <div className="w-full z-10 max-w-md flex flex-col justify-center items-center p-20 centering">
         <h1 className="text-4xl sm:text-6xl absolute top-4 left-4 z-20">{username}</h1>
         <div className="grid grid-cols-1 aspect-square justify-center mx-auto my-2">
-          <Image
-            src={"/../public/emotion" + (1 + curEmotion) + ".png"}
+          <img
+            src={emotionsList[curEmotion]}
             onClick={() => addTodo(emotions, curEmotion, username)}
             className="styledIMAGE relative w-1/2 h-1/2 rounded-full active:scale-90 mx-auto"
             width={150}
