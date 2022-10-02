@@ -84,7 +84,7 @@ export default function IndexPage() {
           ) : (
             <div className="absolute top-20 w-max-md rounded-2xl w-3/4 h-fit bg-white z-30">
               <ul className="r">
-                <li className="mx-3 my-2 flex flex-row justify-between flex-nowrap">
+                <li className="mx-3 my-2 flex flex-row justify-between items-center flex-nowrap">
                   <span className="w-48 p-2 ">аватар</span>
                   <img
                     className="w-16 h-16 rounded-2xl"
@@ -122,19 +122,19 @@ export default function IndexPage() {
                   <span className="mx-3 my-2 w-48 px-2 ">друзей</span>
                   <span className="mx-3 my-2 w-48 px-2 text-right">5</span>
                 </li>
-                <li className="flex flex-row justify-between flex-nowrap">
+                <li className="cursor-pointer flex flex-row justify-between flex-nowrap">
                   <span className="mx-3 my-2 w-48 px-2 ">
                     пригласить друзей
                   </span>
                 </li>
-                <li className="flex flex-row justify-between flex-nowrap">
+                <li className="cursor-pointer flex flex-row justify-between flex-nowrap">
                   <span className="mx-3 my-2 w-48 px-2 ">черный список</span>
                 </li>
-                <li className="flex flex-row justify-between flex-nowrap">
+                <li className="cursor-pointer flex flex-row justify-between flex-nowrap">
                   <span className="mx-3 my-2 w-48 px-2 ">уведомления</span>
                 </li>
                 <li
-                  className="mx-3 my-2 w-48 px-2 text-gray-600"
+                  className="cursor-pointer mx-3 my-2 w-48 px-2 text-gray-600"
                   onClick={async () => {
                     const { error } = await supabase.auth.signOut();
                     if (error) console.log("Error logging out:", error.message);

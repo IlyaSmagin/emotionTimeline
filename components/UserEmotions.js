@@ -11,7 +11,7 @@ export default function Todos({ user }) {
     {
       name: "Рома Винегрет",
       style: "from-red-900 via-purple-800 to-pink-700",
-      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.24.jpeg?raw=true",
+      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.41.jpeg?raw=true",
     },
     {
       name: "Константин Владимиро-Кабаевский",
@@ -21,7 +21,7 @@ export default function Todos({ user }) {
     {
       name: "Маргарита Астафьева",
       style: "from-orange-500 via-yellow-300 to-cyan-700",
-      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.41.jpeg?raw=true",
+      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.54.jpeg?raw=true",
     },
     {
       name: "Пантелей Владимиров",
@@ -31,7 +31,7 @@ export default function Todos({ user }) {
     {
       name: "Костя Череп Сосиска",
       style: "from-green-700 via-red-400 to-yellow-300",
-      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.54.jpeg?raw=true",
+      img: "https://github.com/rfeskov/r.feskov/blob/main/photo_2022-10-02%2012.34.24.jpeg?raw=true",
     },
   ];
 

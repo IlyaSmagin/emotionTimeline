@@ -20,7 +20,7 @@
   @apply transition duration-150 bg-black text-white;
 }
 .styledIMAGE > div {
-  @apply relative w-1/2 h-1/2 rounded-full active:scale-90 mx-auto ;
+  @apply relative w-1/2 h-1/2 rounded-full active:scale-90 mx-auto;
 }
 /* Start purging... */
 @tailwind utilities;
